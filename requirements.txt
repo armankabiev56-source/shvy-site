@@ -1,0 +1,4 @@
+django==6.0.3
+pymysql==1.1.2
+gunicorn==25.1.0
+pillow==12.1.1

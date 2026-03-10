@@ -1,0 +1,1 @@
+web: gunicorn shvy.wsgi --log-file -

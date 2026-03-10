@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-5 fw-bold text-dark">О компании</h1>
+
+    <!-- Логотип + текст на одной линии -->
+    <div class="d-flex align-items-center justify-content-center mb-5 flex-wrap gap-3">
+        <img src="{% static 'images/PBSlogo.png' %}" alt="Prime Build Solutions" style="max-width: 15%; height: auto;">
+        <p class="lead fw-bold text-dark mb-0" style="max-width: 600px; text-align: center;">
+            ТОО «Prime Build Solutions» — молодая, динамично развивающаяся компания, которая готова качественно и в кратчайшие сроки осуществить поставки строительных материалов на любую строительную площадку нашей страны.
+        </p>
+    </div>
+
+    <!-- Дополнительный текст ниже (если нужно) -->
+    <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+            <p class="text-dark">Мы специализируемся на поставке и монтаже деформационных швов всех типов. Доставка по всему Казахстану.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

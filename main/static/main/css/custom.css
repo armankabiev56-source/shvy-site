@@ -1,0 +1,123 @@
+:root {
+    --primary: #0d2b5e;     /* основной синий */
+    --accent: #ff9800;      /* золотой акцент */
+    --dark: #0a1f44;        /* тёмный фон футера */
+    --text: #212529;        /* основной чёрный текст на белом фоне */
+    --text-light: #495057;  /* чуть светлее для второстепенного текста */
+    --gray-light: #adb5bd;  /* светло-серый для ссылок в футере */
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #f8f9fa;
+    color: var(--text);
+    line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+p, li, .card-text {
+    color: var(--text-light);
+}
+
+/* Навигация — белый текст */
+.navbar {
+    background: linear-gradient(135deg, var(--dark), #0a1f44) !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--accent) !important;
+}
+
+/* Кнопки */
+.btn-warning {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-warning:hover {
+    background-color: #e68900;
+    transform: translateY(-3px);
+}
+
+/* Карточки */
+.card-hover {
+    transition: all 0.35s ease;
+    border: none;
+}
+
+.card-hover:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.18) !important;
+}
+
+.card-title {
+    color: var(--primary);
+}
+
+.card-text {
+    color: var(--text-light);
+}
+
+/* Таблицы */
+.table thead th {
+    background-color: var(--primary);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* Герой */
+.hero {
+    height: 100vh !important;
+    min-height: 100vh;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* ФУТЕР — текст белый и читаемый */
+footer {
+    background: linear-gradient(135deg, var(--dark), #0a1f44);
+    color: #e9ecef;
+    padding: 4rem 0 2rem;
+}
+
+footer h5, footer h6 {
+    color: white;
+    font-weight: 600;
+}
+
+footer p {
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+}
+
+footer a {
+    color: var(--gray-light);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+footer a:hover {
+    color: var(--accent);
+}
+
+/* Сообщения */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-5 text-dark fw-bold">Каталог деформационных швов</h1>
+    
+    <div class="row g-4">
+        {% for cat in categories %}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <a href="{% url 'category_detail' cat.slug %}" class="text-decoration-none text-dark">
+                <div class="card h-100 text-center shadow border-0 hover-shadow p-4">
+                    {% if cat.image %}
+                        <img src="{{ cat.image.url }}" class="card-img-top rounded mb-3" style="height: 140px; object-fit: cover;">
+                    {% else %}
+                        <div class="bg-light rounded mb-3 d-flex align-items-center justify-content-center" style="height: 140px;">
+                            <i class="fas fa-hard-hat fa-5x text-primary opacity-50"></i>
+                        </div>
+                    {% endif %}
+                    <h5 class="card-title fw-bold">{{ cat.name }}</h5>
+                    <p class="text-muted small mb-3">Посмотреть все типы и размеры</p>
+                    <div class="mt-auto">
+                        <span class="btn btn-outline-primary btn-sm w-100 fw-bold">
+                            Перейти в категорию →
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+        <p class="text-center text-muted">Категорий пока нет</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

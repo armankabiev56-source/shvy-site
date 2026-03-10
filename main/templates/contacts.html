@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-4">Контакты</h1>
+    <div class="row">
+        <div class="col-lg-6">
+            <p><strong>Телефон:</strong> +7 (775) 277-44-98, +7 (708) 164-25-49</p>
+            <p><strong>Email:</strong> Aidarrah0201@mail.ru</p>
+            <p><strong>Адрес:</strong> Кошкарбаева 36</p>
+        </div>
+        <div class="col-lg-6">
+            <!-- Вставь сюда код карты Яндекс -->
+            <iframe src="https://yandex.ru/map-widget/v1/?ll=71.485763%2C51.125247&z=18"
+        width="100%"
+        height="400"
+        frameborder="1"
+        allowfullscreen="true">
+</iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}

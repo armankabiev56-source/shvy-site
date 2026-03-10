@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Деформационные швы — Казахстан | Prime Build Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/css/custom.css' %}">
+    <style>
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+                        url('{% static "images/hero.jpg" %}') center/cover no-repeat;
+            height: 100vh;
+            color: white;
+        }
+        .card-hover { transition: all 0.3s; }
+        .card-hover:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15)!important; }
+    </style>
+</head>
+
+<!-- Ключевой момент: flex + min-vh-100 на body -->
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- НАВИГАЦИЯ -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="/">Prime Build Solutions</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/catalog/">Каталог</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about/">О нас</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contacts/">Контакты</a></li>
+                </ul>
+                <button class="btn btn-warning ms-3 fw-bold" data-bs-toggle="modal" data-bs-target="#applicationModal">
+                    <i class="fas fa-phone"></i> Оставить заявку
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- СООБЩЕНИЯ -->
+    {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Основной контент — растягивается (flex-grow-1) -->
+    <main class="flex-grow-1">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ФУТЕР — прижат к низу (mt-auto) -->
+    <footer class="bg-dark text-white py-5 mt-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold text-warning">Prime Build Solutions</h5>
+                    <p>Поставка и монтаж деформационных швов по всему Казахстану.</p>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6 class="fw-bold">Меню</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="/" class="text-white-50">Главная</a></li>
+                        <li><a href="/catalog/" class="text-white-50">Каталог</a></li>
+                        <li><a href="/about/" class="text-white-50">О нас</a></li>
+                        <li><a href="/contacts/" class="text-white-50">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h6 class="fw-bold">Контакты</h6>
+                    <p class="text-white-50">
+                        +7 (775) 277-44-98<br>
+                        +7 (708) 164-25-49<br>
+                        Aidarrah0201@mail.ru<br>
+                        arman.kabiev01@mail.ru<br>
+                        Астана, ул. Кошкарбаева 36
+                    </p>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3">Мы на карте</h6>
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=71.485763%2C51.125247&z=18" width="100%" height="180" frameborder="0"></iframe>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center text-white-50 small">
+                © 2026 ТОО "Prime Build Solutions". Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <!-- МОДАЛЬНОЕ ОКНО -->
+    <div class="modal fade" id="applicationModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="{% url 'apply' %}">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title">Оставить заявку</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" name="name" class="form-control mb-3" placeholder="Ваше имя" required>
+                        <input type="tel" id="phone" name="phone" class="form-control mb-3" placeholder="+7 (___) ___-__-__" maxlength="17" required>
+                        <select name="product" class="form-select mb-3">
+                            <option value="">Любой товар</option>
+                            {% for p in popular %}
+                                <option value="{{ p.id }}">{{ p.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <textarea name="message" class="form-control" rows="3" placeholder="Дополнительная информация..."></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success w-100">Отправить заявку</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Маска телефона
+        document.getElementById('phone')?.addEventListener('input', function(e) {
+            let v = e.target.value.replace(/\D/g,'');
+            if (v.startsWith('7')) v = v.slice(1);
+            if (v.length > 10) v = v.slice(0,10);
+            let f = '+7';
+            if (v.length > 0) f += ' (' + v.slice(0,3);
+            if (v.length > 3) f += ') ' + v.slice(3,6);
+            if (v.length > 6) f += '-' + v.slice(6,8);
+            if (v.length > 8) f += '-' + v.slice(8,10);
+            e.target.value = f;
+        });
+
+        // Автозакрытие сообщений через 10 секунд
+        document.addEventListener('DOMContentLoaded', function () {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                setTimeout(() => {
+                    alert.classList.remove('show');
+                    alert.classList.add('fade');
+                    setTimeout(() => alert.remove(), 300);
+                }, 10000);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- HERO — вернул высоту 100vh -->
+<section class="hero d-flex align-items-center text-center">
+    <div class="container">
+        <h1 class="display-3 fw-bold text-white">Деформационные швы</h1>
+        <p class="lead mb-4 text-white">Качественные решения для бетона, мостов и зданий по всему Казахстану</p>
+        <a href="{% url 'catalog' %}" class="btn btn-warning btn-lg fw-bold">
+            Каталог
+        </a>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-shield-alt fa-3x text-warning mb-3"></i>
+                <h5 class="text-dark fw-bold">Гарантия 10 лет</h5>
+            </div>
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-truck fa-3x text-warning mb-3"></i>
+                <h5 class="text-dark fw-bold">Доставка по РК</h5>
+            </div>
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-tools fa-3x text-warning mb-3"></i>
+                <h5 class="text-dark fw-bold">Монтаж под ключ</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 text-dark fw-bold">Популярные товары</h2>
+        <div class="row g-4">
+            {% for product in popular %}
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a href="{% url 'product_detail' product.slug %}" class="text-decoration-none">
+                    <div class="card h-100 card-hover shadow-sm">
+                        {% if product.main_image %}
+                            <img src="{{ product.main_image.url }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                            <img src="{% static 'images/no-photo.jpg' %}" class="card-img-top" alt="Нет фото">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text text-muted flex-grow-1">{{ product.description|truncatewords:25 }}</p>
+                            <div class="mt-auto">
+                                <span class="badge bg-success fs-6">Смотреть варианты</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
