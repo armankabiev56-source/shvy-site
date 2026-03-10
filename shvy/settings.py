@@ -5,7 +5,7 @@ import pymysql
 # ====================== БАЗОВЫЕ НАСТРОЙКИ ======================
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-замени_на_свой_ключ_из_старого_файла_если_хочешь'  
+SECRET_KEY = 'django-insecure'  
 # ← Если хочешь оставить свой старый SECRET_KEY — просто замени эту строку на свою из старого файла
 
 DEBUG = True
