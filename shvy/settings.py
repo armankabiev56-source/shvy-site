@@ -54,16 +54,31 @@ TEMPLATES = [
 WSGI_APPLICATION = 'shvy.wsgi.application'
 
 # ====================== БАЗА ДАННЫХ ======================
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'shvy_db',
+#         'USER': 'shvy_user',
+#         'PASSWORD': 'Arman_87081642549_@',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'charset': 'utf8mb4',
+#         },
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'shvy_db',
-        'USER': 'shvy_user',
-        'PASSWORD': 'Arman_87081642549_@',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'shvy_db',              # имя базы (можно оставить или изменить)
+        'USER': 'shvy_user',            # имя пользователя базы
+        'PASSWORD': 'Arman_87081642549_@',  # пароль от пользователя
+        'HOST': 'localhost',            # на локальной машине — localhost
+        'PORT': '5432',                 # стандартный порт PostgreSQL
+        # Опции не обязательны, но можно оставить для совместимости
         'OPTIONS': {
-            'charset': 'utf8mb4',
+            'sslmode': 'prefer',        # или 'require' если нужен SSL
         },
     }
 }
