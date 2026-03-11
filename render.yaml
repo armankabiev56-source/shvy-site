@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: shvy-site
+    env: python
+    buildCommand: pip install -r requirements.txt && python manage.py migrate
+    startCommand: gunicorn shvy.wsgi --bind 0.0.0.0:$PORT
