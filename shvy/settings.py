@@ -71,6 +71,7 @@ WSGI_APPLICATION = 'shvy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db_123_t195',  # ← имя базы из твоего DATABASE_URL
     }
 }
 
