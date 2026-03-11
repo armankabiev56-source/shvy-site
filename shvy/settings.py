@@ -71,15 +71,6 @@ WSGI_APPLICATION = 'shvy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'shvy_db',              # имя базы (можно оставить или изменить)
-        'USER': 'shvy_user',            # имя пользователя базы
-        'PASSWORD': 'Arman_87081642549_@',  # пароль от пользователя
-        'HOST': 'localhost',            # на локальной машине — localhost
-        'PORT': '5432',                 # стандартный порт PostgreSQL
-        # Опции не обязательны, но можно оставить для совместимости
-        'OPTIONS': {
-            'sslmode': 'prefer',        # или 'require' если нужен SSL
-        },
     }
 }
 
