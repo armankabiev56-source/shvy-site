@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import pymysql
+import dj_database_url
 # pymysql.install_as_MySQLdb()
 # ====================== БАЗОВЫЕ НАСТРОЙКИ ======================
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -69,10 +70,11 @@ WSGI_APPLICATION = 'shvy.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db_123_t195',  # ← имя базы из твоего DATABASE_URL
-    }
+    'default': dj_database_url.config(
+        default='postgresql://localhost/shvy_db',  # fallback на случай если DATABASE_URL нет
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 # ====================== ПАРОЛИ И ЛОКАЛИЗАЦИЯ ======================
